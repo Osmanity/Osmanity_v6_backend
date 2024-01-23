@@ -22,6 +22,8 @@ app.use(express.json());
 app.use(cors());
 const PORT = process.env.PORT || 3001;
 
+console.log(`PORT value: ${PORT}`); // Debugging line
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
