@@ -20,9 +20,9 @@ const voiceID = "7KLHatv2mv9l6HYZlH92";
 const app = express();
 app.use(express.json());
 app.use(cors());
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
-console.log(`PORT value: ${PORT}`); // Debugging line
+console.log(`port value: ${port}`); // Debugging line
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -266,9 +266,9 @@ const audioFileToBase64 = async (file) => {
   return data.toString("base64");
 };
 
-app.listen(PORT, () => {
+app.listen(port, () => {
   console.log(
-    `\n\n\n\n\n\n\n\n\nMy Virtual Assistance listening on port ${PORT}`
+    `\n\n\n\n\n\n\n\n\nMy Virtual Assistance listening on port ${port}`
   );
   console.log(`Current directory: ${process.cwd()}`);
 });
