@@ -264,7 +264,7 @@ const audioFileToBase64 = async (file) => {
   return data.toString("base64");
 };
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log(
     `\n\n\n\n\n\n\n\n\nMy Virtual Assistance listening on port ${PORT}`
   );
