@@ -20,7 +20,7 @@ const voiceID = "7KLHatv2mv9l6HYZlH92";
 const app = express();
 app.use(express.json());
 app.use(cors());
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 console.log(`PORT value: ${PORT}`); // Debugging line
 
