@@ -11,14 +11,4 @@ Start the development server with
 
 ```
 
-
-
-notes:
-
-// Somewhere at the start of your code
-const audioDirectory = './audios';
-
-if (!fs.existsSync(audioDirectory)){
-  fs.mkdirSync(audioDirectory);
-}
 ```

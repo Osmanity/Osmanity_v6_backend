@@ -69,11 +69,11 @@ const lipSyncMessage = async (message) => {
   const time = new Date().getTime();
   console.log(`Starting conversion for message ${message}`);
 
-  const audioDirectory = "./audios";
+  // const audioDirectory = "./audios";
 
-  if (!fs.existsSync(audioDirectory)) {
-    fs.mkdirSync(audioDirectory);
-  }
+  // if (!fs.existsSync(audioDirectory)) {
+  //   fs.mkdirSync(audioDirectory);
+  // }
 
   // todo convert this method ffmpeg convertion to use the
   // window command local deployment
