@@ -68,6 +68,13 @@ async function convertAudio(message) {
 const lipSyncMessage = async (message) => {
   const time = new Date().getTime();
   console.log(`Starting conversion for message ${message}`);
+
+  const audioDirectory = "./audios";
+
+  if (!fs.existsSync(audioDirectory)) {
+    fs.mkdirSync(audioDirectory);
+  }
+
   // todo convert this method ffmpeg convertion to use the
   // window command local deployment
   // try {
@@ -82,16 +89,28 @@ const lipSyncMessage = async (message) => {
   //   console.error("Failed to convert audio:", err);
   // }
 
-  // Linux command production deployment using "/" instead of "\"
+  // ffmpeg Linux command production deployment using "/" instead of "\"
   try {
     await execCommand(
-      `./lipSync/rhubarb -f json -o audios/message_${message}.json audios/message_${message}.wav -r phonetic`
+      `ffmpeg -y -i "audios/message_${message}.mp3" "audios/message_${message}.wav"`
+      // -y to overwrite the existing file
     );
-    console.error("Successfully created Lip Sync!");
+    console.log("Successfully converted audio from mp3 to wav");
+    console.log(`Wav file conversion done in ${new Date().getTime() - time}ms`);
   } catch (err) {
-    console.error("Failed Lip Sync creation!");
-    console.error("Info: Failed to convert audio to lip sync Msg: ", err);
+    console.error("Failed to convert audio:", err);
   }
+
+  // Linux command production deployment using "/" instead of "\"
+  // try {
+  //   await execCommand(
+  //     `./lipSync/rhubarb -f json -o audios/message_${message}.json audios/message_${message}.wav -r phonetic`
+  //   );
+  //   console.error("Successfully created Lip Sync!");
+  // } catch (err) {
+  //   console.error("Failed Lip Sync creation!");
+  //   console.error("Info: Failed to convert audio to lip sync Msg: ", err);
+  // }
 
   try {
     // await execCommand(
@@ -217,7 +236,7 @@ app.post("/chat", async (req, res) => {
         id: uuidv4(), // Ensure each message has a unique ID
         role: msg.role || "assistant", // Ensure role is defined, default to "assistant" if missing
       }));
-      log("IsJson Messages:", messages);
+      // log("IsJson Messages:", messages);
     } else {
       // Handle non-JSON response
       messages = handlePlainTextResponse(completion.choices[0].message.content);
