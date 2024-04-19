@@ -69,16 +69,28 @@ const lipSyncMessage = async (message) => {
   const time = new Date().getTime();
   console.log(`Starting conversion for message ${message}`);
   // todo convert this method ffmpeg convertion to use the
+  // window command local deployment
+  // try {
+  //   await execCommand(
+  //     `ffmpeg -y -i audios/message_${message}.mp3 audios/message_${message}.wav`
+  //     // -y to overwrite the file
+  //   );
+  //   // await convertAudio(message);
+  //   console.log("Successfully converted audio from mp3 to wav");
+  //   console.log(`Wav file conversion done in ${new Date().getTime() - time}ms`);
+  // } catch (err) {
+  //   console.error("Failed to convert audio:", err);
+  // }
+
+  // Linux command production deployment using "/" instead of "\"
   try {
     await execCommand(
-      `ffmpeg -y -i audios/message_${message}.mp3 audios/message_${message}.wav`
-      // -y to overwrite the file
+      `./lipSync/rhubarb -f json -o audios/message_${message}.json audios/message_${message}.wav -r phonetic`
     );
-    // await convertAudio(message);
-    console.log("Successfully converted audio from mp3 to wav");
-    console.log(`Wav file conversion done in ${new Date().getTime() - time}ms`);
+    console.error("Successfully created Lip Sync!");
   } catch (err) {
-    console.error("Failed to convert audio:", err);
+    console.error("Failed Lip Sync creation!");
+    console.error("Info: Failed to convert audio to lip sync Msg: ", err);
   }
 
   try {
@@ -86,12 +98,18 @@ const lipSyncMessage = async (message) => {
     //   `./lipSync/rhubarb -f json -o audios/message_${message}.json audios/message_${message}.wav -r phonetic`
     //   // -r phonetic is faster but less accurate
     // );
+    // window command local deployment
+    // await execCommand(
+    //   "cmd.exe /c .\\lipSync\\rhubarb -f json -o audios\\message_" +
+    //     message +
+    //     ".json audios\\message_" +
+    //     message +
+    //     ".wav -r phonetic"
+    // );
+
+    // Linux command production deployment using "/" instead of "\"
     await execCommand(
-      "cmd.exe /c .\\lipSync\\rhubarb -f json -o audios\\message_" +
-        message +
-        ".json audios\\message_" +
-        message +
-        ".wav -r phonetic"
+      `./lipSync/rhubarb -f json -o audios/message_${message}.json audios/message_${message}.wav -r phonetic`
     );
 
     console.error("Successfully created Lip Sync!");
