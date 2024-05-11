@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 # Install ffmpeg and Rhubarb-Lip-Sync dependenci
 RUN apt-get update && apt-get install -y \
     ca-certificates \
-    curl \
+    wget \
     xz-utils \
     && rm -rf /var/lib/apt/lists/*
 
