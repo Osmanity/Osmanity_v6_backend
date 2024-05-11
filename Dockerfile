@@ -9,14 +9,15 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     curl \
     xz-utils \
+    ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
 # Download and install FFmpeg via link
-RUN curl -L https://github.com/BtbN/FFmpeg-Builds/archive/refs/tags/latest.zip -o ffmpeg_latest.zip \
-    && unzip ffmpeg_latest.zip \
-    && mv FFmpeg-Builds-latest/ffmpeg /usr/local/bin/ \
-    && chmod +x /usr/local/bin/ffmpeg \
-    && rm -rf ffmpeg_latest.zip FFmpeg-Builds-latest
+# RUN curl -L https://github.com/BtbN/FFmpeg-Builds/archive/refs/tags/latest.zip -o ffmpeg_latest.zip \
+#     && unzip ffmpeg_latest.zip \
+#     && mv FFmpeg-Builds-latest/ffmpeg /usr/local/bin/ \
+#     && chmod +x /usr/local/bin/ffmpeg \
+#     && rm -rf ffmpeg_latest.zip FFmpeg-Builds-latest
 
 
 # Download and install FFmpeg via link
