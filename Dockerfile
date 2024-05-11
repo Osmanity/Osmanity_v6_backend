@@ -12,16 +12,8 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Download and install FFmpeg
-# RUN wget https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz \
-#     && tar -xJf ffmpeg-master-latest-linux64-gpl.tar.xz \
-#     && mv ffmpeg-master-latest-linux64-gpl/ffmpeg /usr/local/bin/ \
-#     && chmod +x /usr/local/bin/ffmpeg \
-#     && rm -rf ffmpeg-master-latest-linux64-gpl.tar.xz ffmpeg-master-latest-linux64-gpl
-
-# Download and install FFmpeg
 RUN wget https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz \
     && tar -xJf ffmpeg-master-latest-linux64-gpl.tar.xz \
-    && ls -lha \
     && mv ffmpeg-master-latest-linux64-gpl/ffmpeg /usr/local/bin/ \
     && chmod +x /usr/local/bin/ffmpeg \
     && rm -rf ffmpeg-master-latest-linux64-gpl.tar.xz ffmpeg-master-latest-linux64-gpl
