@@ -10,6 +10,8 @@ RUN apt-get update && apt-get install -y \
     curl \
     xz-utils \
     ffmpeg \
+    wget \
+    unzip \
     && rm -rf /var/lib/apt/lists/*
 
 # Download and install FFmpeg via link
@@ -36,12 +38,24 @@ RUN apt-get update && apt-get install -y \
 #     && rm -rf ffmpeg-master-latest-linux64-gpl.tar.xz ffmpeg-master-latest-linux64-gpl
 
 
-# Download and install Rhubarb-Lip-Sync for Linux via link
-RUN curl https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.13.0/Rhubarb-Lip-Sync-1.13.0-Linux.zip \
+
+# New:Download and install Rhubarb-Lip-Sync for Linux via link
+# Download Rhubarb-Lip-Sync for Linux via curl
+RUN curl -LO https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.13.0/Rhubarb-Lip-Sync-1.13.0-Linux.zip
+
+# Create a directory for Rhubarb-Lip-Sync and extract it
+RUN mkdir rhubarb \
     && unzip Rhubarb-Lip-Sync-1.13.0-Linux.zip -d rhubarb \
     && mv rhubarb/rhubarb /usr/local/bin/ \
     && chmod +x /usr/local/bin/rhubarb \
     && rm Rhubarb-Lip-Sync-1.13.0-Linux.zip
+
+# old:Download and install Rhubarb-Lip-Sync for Linux via link
+# RUN curl https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.13.0/Rhubarb-Lip-Sync-1.13.0-Linux.zip \
+#     && unzip Rhubarb-Lip-Sync-1.13.0-Linux.zip -d rhubarb \
+#     && mv rhubarb/rhubarb /usr/local/bin/ \
+#     && chmod +x /usr/local/bin/rhubarb \
+#     && rm Rhubarb-Lip-Sync-1.13.0-Linux.zip
 
 # Install node modules
 COPY package*.json ./
